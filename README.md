@@ -63,8 +63,8 @@ For the reproducibility of our results, our implementation is available on GitHu
 | Leveraging Bagging (LB) | [MOA Framework](https://github.com/Waikato/moa) |
 | ARF | [MOA Framework](https://github.com/Waikato/moa) |
 | SRP | [MOA Framework](https://github.com/Waikato/moa) |
-| KUE | [MOA Framework](https://github.com/Waikato/moa) |
-| BELS | [GitHub Repository](https://github.com/bahshi/BELS) |
+| KUE | [MOA Framework](https://github.com/canoalberto/Kappa-Updated-Ensemble) |
+| BELS | [GitHub Repository](https://github.com/sepehrbakhshi/BELS) | 
 | DynED | [GitHub Repository](https://github.com/soheilabadifard/DynED) |
 | **Imbalance-Specific Methods (ISM)** | |
 | HD-VFDT | [MOA Framework](https://github.com/Waikato/moa) |
@@ -86,20 +86,43 @@ For the reproducibility of our results, our implementation is available on GitHu
 
 To run the LSH-DynED model, follow these steps:
 
-1.  **Clone the repository:**
+1.  **Prepare Your Datasets:**
+    * Create a directory (e.g., `datasets/`).
+    * Place all your dataset files (e.g., in `.arff` format) inside this directory. The script will iterate through and process every file in this folder.
+
+2.  **Clone the Repository:**
     ```bash
     git clone [https://github.com/user/LSH-DynED.git](https://github.com/user/LSH-DynED.git)
     cd LSH-DynED
     ```
-2.  **Install dependencies:**
+3.  **Install Dependencies:**
     ```bash
     pip install -r requirements.txt
     ```
-3.  **Run the model:**
-    ```python
-    # Example script to run LSH-DynED on a dataset
-    # (Please provide a more detailed script or instructions on how to run your code)
-    ```
+4.  **Configure the Script:**
+    * Open the `main.py` file.
+    * Go to the last line of the script:
+        ```python
+        if __name__ == "__main__":
+            main('Path to dataset Directory')
+        ```
+    * Modify the path inside the `main()` function to point to the directory you created in step 1. For example, if your folder is named `datasets`, the line should look like this:
+        ```python
+        if __name__ == "__main__":
+            main('datasets/')
+        ```
+5.  **Run the Model:**
+    * Execute the script from your terminal:
+        ```bash
+        python main.py
+        ```
+    * The script will now run the LSH-DynED model on each dataset in the specified folder.
+
+#### Output
+
+For each dataset processed (e.g., `my_data.arff`), the script will generate two new CSV files in the same directory:
+* `my_data.arff_mgmean.csv`: Contains the G-Mean scores calculated every 500 instances.
+* `my_data.arff_kappa.csv`: Contains the prequential Kappa scores.
 
 ### Hyperparameters:
 
