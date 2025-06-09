@@ -10,9 +10,6 @@ This repository contains the implementation of the LSH-DynED model, a novel, rob
 * Soheil Abadifard, Kansas State University (abadifard@ksu.edu)
 * Fazli Can, Bilkent University (canf@cs.bilkent.edu.tr)
 
-**Publication:**
-Soheil Abadifard and Fazli Can. 2025. LSH-DynED: A Dynamic Ensemble Framework with LSH-Based Undersampling for Evolving Multi-Class Imbalanced Classification. 1, 1 (June 2025), 31 pages. https://doi.org/10.1145/nnnnnnn.nnnnnnn
-
 ---
 
 ## Overview
@@ -40,9 +37,6 @@ LSH-DynED operates in three main stages:
 2.  **Drift Detection and Adaptation:** The ADWIN drift detector monitors the system's performance. If drift is detected, a new component is trained on recent data from a balanced dataset created by our novel undersampling method and added to a pool of "reserved components".
 3.  **Component Selection:** This stage updates the ensemble's components to maintain a balance between diversity and accuracy. Components are selected from the combined pool of "selected" and "reserved" components based on their accuracy and a modified Maximal Marginal Relevance (MMR) algorithm.
 
-A key innovation in LSH-DynED is the use of **multi-sliding windows**, with each class allocating its own sliding window to buffer the most recent data samples of a fixed size. This ensures that minority classes remain consistently available for training, addressing the challenge of data availability in imbalanced streams.
-
-The undersampling of majority classes is guided by the **Weighted Average of Ratios ($WAR_t$)**, which dynamically identifies majority classes based on their representation in the stream.
 </details>
 
 <br>
@@ -56,13 +50,33 @@ The proposed method is implemented in **Python 3.11.7** and utilizes the followi
 
 The base classifier used is a **Hoeffding Tree**.
 
-### Dependencies:
-
-* A list of all required packages can be found in the `requirements.txt` file.
-
 ### Reproducibility:
 
-For the reproducibility of our results, our implementation is available on GitHub. We have provided all experimental details to make our approach open to new improvements. The baseline methods used for comparison are from the MOA framework, and the BELS implementation is also publicly available.
+For the reproducibility of our results, our implementation is available on GitHub. We have provided all experimental details to make our approach open to new improvements. The baseline methods used for comparison are from the MOA framework, and other implementations are also publicly available.
+
+#### Baselines
+
+| Method | Implementation Link |
+| :--- | :--- |
+| **General-Purpose Methods (GPM)** | |
+| OzaBagAdwin (OBA) | [MOA Framework](https://github.com/Waikato/moa) |
+| Leveraging Bagging (LB) | [MOA Framework](https://github.com/Waikato/moa) |
+| ARF | [MOA Framework](https://github.com/Waikato/moa) |
+| SRP | [MOA Framework](https://github.com/Waikato/moa) |
+| KUE | [MOA Framework](https://github.com/Waikato/moa) |
+| BELS | [GitHub Repository](https://github.com/bahshi/BELS) |
+| DynED | [GitHub Repository](https://github.com/soheilabadifard/DynED) |
+| **Imbalance-Specific Methods (ISM)** | |
+| HD-VFDT | [MOA Framework](https://github.com/Waikato/moa) |
+| GH-VFDT | [MOA Framework](https://github.com/Waikato/moa) |
+| MUOB | [MOA Framework](https://github.com/Waikato/moa) |
+| MOOB | [MOA Framework](https://github.com/Waikato/moa) |
+| ARFR | [MOA Framework](https://github.com/Waikato/moa) |
+| CSARF | [MOA Framework](https://github.com/Waikato/moa) |
+| CALMID | [MOA Framework](https://github.com/Waikato/moa) |
+| ROSE | [GitHub Repository](https://github.com/canoalberto/ROSE) |
+| MicFoal | [MOA Framework](https://github.com/Waikato/moa) |
+
 </details>
 
 <br>
@@ -110,36 +124,3 @@ For a detailed analysis of our results, including performance on specific datase
 <br>
 
 ---
-
-## Future Work
-
-We envision several avenues for future research:
-* Adapting the approach for binary imbalanced data streams.
-* Studying data streams with a high dimensionality of classes or newly emerging class labels.
-* Introducing novel datasets representing diverse data streams from various fields.
-* Extending the approach to multi-label streams, where each instance may belong to more than one class.
-
----
-
-<!-- ## Citation
-
-If you use LSH-DynED in your research, please cite our paper:
-
- ```bibtex
-@article{Abadifard2025LSHDynED,
-  author = {Abadifard, Soheil and Can, Fazli},
-  title = {LSH-DynED: A Dynamic Ensemble Framework with LSH-Based Undersampling for Evolving Multi-Class Imbalanced Classification},
-  year = {2025},
-  issue_date = {June 2025},
-  publisher = {Association for Computing Machinery},
-  address = {New York, NY, USA},
-  volume = {1},
-  number = {1},
-  issn = {},
-  url = {[https://doi.org/10.1145/nnnnnnn.nnnnnnn](https://doi.org/10.1145/nnnnnnn.nnnnnnn)},
-  doi = {10.1145/nnnnnnn.nnnnnnn},
-  journal = {},
-  month = {jun},
-  pages = {31},
-  numpages = {31}
-}-->
