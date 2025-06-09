@@ -1,7 +1,3 @@
-# LSH-DynED
-
-The proposed method is located inside the [Model](Model) folder.
-
 # LSH-DynED: A Dynamic Ensemble Framework with LSH-Based Undersampling for Evolving Multi-Class Imbalanced Classification
 
 This repository contains the implementation of the LSH-DynED model, a novel, robust, and resilient approach for classifying imbalanced and non-stationary data streams with multiple classes. This work is authored by Soheil Abadifard and Fazli Can.
