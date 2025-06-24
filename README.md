@@ -2,10 +2,10 @@
 
 This repository contains the implementation of the LSH-DynED model, a novel, robust, and resilient approach for classifying imbalanced and non-stationary data streams with multiple classes.
 
-<!--**Authors:**
+**Authors:**
 * Soheil Abadifard, Kansas State University (abadifard@ksu.edu)
 * Fazli Can, Bilkent University (canf@cs.bilkent.edu.tr)
--->
+  
 --- 
 
 ## Overview
