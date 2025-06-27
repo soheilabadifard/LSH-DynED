@@ -143,3 +143,18 @@ For a detailed analysis of our results, including performance on specific datase
 <br>
 
 ---
+
+## CitationAdd
+
+If you use LSH-DynED in your research, please cite our paper:
+
+ ```bibtex
+@article{Abadifard2025LSHDynED,
+  title={LSH-DynED: A Dynamic Ensemble Framework with LSH-Based Undersampling for Evolving Multi-Class Imbalanced Classification}, 
+      author={Soheil Abadifard and Fazli Can},
+      year={2025},
+      eprint={2506.20041},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2506.20041},
+}
