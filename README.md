@@ -80,6 +80,21 @@ For the reproducibility of our results, our implementation is available on GitHu
 <br>
 
 <details>
+<summary><b>Datasets</b></summary>
+
+The paper evaluates LSH-DynED on 33 imbalanced multi-class streams: 23 real-world datasets and ten semi-synthetic streams with dynamic imbalance ratios. The full list and their characteristics are given in the paper's dataset table.
+
+* **Benchmark streams (real and semi-synthetic):** distributed with the reproducible experimental framework of Aguiar, Sousa, and Cano's survey on learning from imbalanced data streams ([imbalanced-streams](https://github.com/canoalberto/imbalanced-streams)) — the same framework used to run the MOA baselines. The semi-synthetic `*-D1` streams follow the construction described by Korycki and Krawczyk. Note that some streams in this collection are extended versions of small datasets: `zoo` is distributed as a 1,000,000-instance stream recirculated from the 101-instance UCI Zoo dataset, with the original schema including the `animal` attribute.
+* **KEEL datasets** (`*_cleaned.arff`): multi-class imbalanced datasets from the [KEEL repository](https://sci2s.ugr.es/keel/datasets.php), converted from KEEL `.dat` format to ARFF.
+* The remaining real-world datasets are publicly accessible from the [UCI repository](https://archive.ics.uci.edu) and Kaggle, as detailed in the paper.
+
+Place the `.arff` files under `Imbalance Datasets/` following the folder layout described in Usage.
+
+</details>
+
+<br>
+
+<details>
 <summary><b>Usage</b></summary>
 
 To run the LSH-DynED model, follow these steps:
