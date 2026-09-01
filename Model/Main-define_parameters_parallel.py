@@ -70,17 +70,20 @@ def process_test_sizes(args):
 
 
 def main():
-    num_cpus = 24
-    root_path = "/data/Soheil-data/Python Projects/DynED-Imb_v2/Imbalance Datasets/arff-multi-class-semi-synthetic/Parameter_Finetuning/"
-    dataset_names = os.listdir(root_path)
-    dataset_names = ['OLYMPIC.arff']
+    num_cpus = os.cpu_count()
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    root_path = os.path.join(project_root, "Imbalance Datasets",
+                             "arff-multi-class-semi-synthetic", "Alberto_data_new") + os.sep
+    # the search reported in Hyperparameter_results/ (135 combinations x 4 datasets)
+    dataset_names = ['ACTIVITY-D1.arff', 'DJ30-D1.arff', 'GAS-D1.arff', 'TAGS-D1.arff']
     filtered_list = [file for file in dataset_names if not file.endswith(".csv")]
-    components = [15]
+    components = [5, 10, 15]
     train_sizes = [20, 50, 100]
     test_sizes = [50, 100, 200]
     vector_sizes = [2, 3, 4, 5, 6]
-    root_path1 = "/data/Soheil-data/Python Projects/DynED-Imb_v2/Imbalance Datasets/arff-multi-class-semi-synthetic/Parameter_Finetuning2/"
-    csv_path = os.path.join(root_path1, "parameter_table5.csv")
+    out_dir = os.path.join(project_root, "Hyperparameter_results")
+    os.makedirs(out_dir, exist_ok=True)
+    csv_path = os.path.join(out_dir, "hyperparameter_search_results.csv")
     for dataset in filtered_list:
         for num_components in tqdm(components, leave=False):
             for size_to_train in tqdm(train_sizes, leave=False):
@@ -105,10 +108,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    # root_path = "/data/Soheil-data/Python Projects/DynED-Imb_v2/Imbalance Datasets/arff-multi-class-semi-synthetic/Parameter_Finetuning/"
-    # dataset = ['ACTIVITY-D1.arff']
-    # components = [5]
-    # train_sizes = [20]
-    # test_sizes = [50]
-    # vector_sizes = [3]
-    # process_test_sizes((dataset[0], components[0], train_sizes[0], test_sizes[0], vector_sizes[0], root_path))

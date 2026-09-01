@@ -6,3 +6,5 @@ In our evaluation of the proposed method, we focus on four key parameters to ass
 - The number of hyperplanes used in the undersampling process, five values: 2, 3, 4, 5, and 6.
 
 By adjusting these parameters, we aim to understand their influence on the method's performance and identify optimal configurations. These values produced 135 possible combinations of parameters for each dataset, totaling 540 results across four datasets.
+
+The results are provided in `Hyperparameters.csv`. Its `kappa` column is the selection criterion used in the paper; the `avg_geo` column (named `g_mean` in older runs) is imblearn's average geometric mean, a run-time convenience metric, and is not the paper's mG-Mean.

@@ -1,4 +1,4 @@
-dataset,num_components,train_size,test_size,vector_size,g_mean,kappa
+dataset,num_components,train_size,test_size,vector_size,avg_geo,kappa
 ACTIVITY-D1.arff,15,20,50,2,0.889211218067206,0.779628626324653
 ACTIVITY-D1.arff,15,20,50,3,0.879393549711191,0.773863399513103
 ACTIVITY-D1.arff,15,20,50,4,0.877126844731172,0.776959144640896
