@@ -1,7 +1,11 @@
 from river.tree import HoeffdingTreeClassifier
+# from river.tree import HoeffdingAdaptiveTreeClassifier
 from data_related_functions import prepare_data_with_features
 from classifier_monitor import StreamConfusionMatrix
 import numpy as np
+
+np.random.seed(101)
+
 
 class Classifier(HoeffdingTreeClassifier):
 
@@ -41,13 +45,8 @@ class Classifier(HoeffdingTreeClassifier):
         self.y_prediction = super().predict_one(dx)
 
         if self.y_prediction is None:
-            rnd = None
-            flag = True
-            while flag:
-                rnd = np.random.choice(self.cls_list)
-                if rnd != dy:
-                    flag = False
-            self.y_prediction = rnd
+            # untrained component (cold start): uniform random guess
+            self.y_prediction = np.random.choice(self.cls_list)
 
         self.sample_count_per_class[dy] += 1
         self.prediction_per_class[dy].append(1 if self.y_prediction == dy else 0)
@@ -78,6 +77,7 @@ class Classifier(HoeffdingTreeClassifier):
         :param dy: true label of the samples
         """
         for x, y in zip(dx, dy):
+            # prepared_x, prepared_y = prepare_data(list(x), y)
             prepared_x, prepared_y = prepare_data_with_features(x, y, self.feature_list)
             self.learn_one(prepared_x, prepared_y)
 

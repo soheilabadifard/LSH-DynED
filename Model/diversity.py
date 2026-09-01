@@ -1,5 +1,6 @@
 from itertools import combinations
 import numpy as np
+np.random.seed(101)
 
 
 def mmr(indx, diversity_matrix, accuracy_scores, lmd, to_select):
@@ -47,6 +48,64 @@ def mmr(indx, diversity_matrix, accuracy_scores, lmd, to_select):
         if len(s) == len_classifiers:
             break
     return s, score
+
+
+def double_fault_measure(predict_queue):
+    """
+    Calculates the double fault measure for a given queue of predictions.
+
+    Parameters
+    ----------
+    predict_queue : a dictionary of lists
+       the key value is the indicator of component and the value is the list of predictions
+    Returns ------- double_fault : ndarray A square matrix where each element (i, j) is the double fault measure
+    between the i-th and j-th prediction in the queue.
+    """
+    min_length = len(predict_queue[0])
+    double_fault = np.zeros((len(predict_queue), len(predict_queue)), dtype=float)
+
+    for i, j in combinations(range(len(predict_queue)), 2):
+        both_correct = np.count_nonzero(np.array(predict_queue[i]) & np.array(predict_queue[j]))
+        both_incorrect = min_length - np.count_nonzero(
+            (np.array(predict_queue[i]) | np.array(predict_queue[j])))
+        fcorrect_sincorrect = np.count_nonzero(np.array(predict_queue[i]) & ~np.array(predict_queue[j]))
+        fincorrect_scorrect = np.count_nonzero(~np.array(predict_queue[i]) & np.array(predict_queue[j]))
+
+        double_fault[i, j] = double_fault[j, i] = 1 - (both_incorrect / (
+                both_correct + both_incorrect + fcorrect_sincorrect + fincorrect_scorrect))
+    return double_fault
+
+
+def q_measure_updated(predict_queue):
+    """
+    Calculates the Q-measure for a given queue of predictions.
+
+    Parameters
+    ----------
+    predict_queue : a dictionary of lists
+        The list of predictions for which the Q-measure is to be calculated.
+
+    Returns
+    -------
+    q_matrix : ndarray
+        A square matrix where each element (i, j) is the Q-measure between the i-th and j-th prediction in the queue.
+    """
+    min_length = len(predict_queue[0])
+    q_matrix = np.zeros((len(predict_queue), len(predict_queue)), dtype=float)
+
+    for i, j in combinations(range(len(predict_queue)), 2):
+        both_correct = np.count_nonzero(np.array(predict_queue[i]) & np.array(predict_queue[j]))
+        both_incorrect = min_length - np.count_nonzero(
+            (np.array(predict_queue[i]) | np.array(predict_queue[j])))
+        fcorrect_sincorrect = np.count_nonzero(np.array(predict_queue[i]) & ~np.array(predict_queue[j]))
+        fincorrect_scorrect = np.count_nonzero(~np.array(predict_queue[i]) & np.array(predict_queue[j]))
+
+        q_matrix[i, j] = q_matrix[j, i] = 1 - (((both_correct * both_incorrect) -
+                                                (fcorrect_sincorrect * fincorrect_scorrect)) /
+                                               ((both_correct * both_incorrect) +
+                                                (fcorrect_sincorrect * fincorrect_scorrect) + np.finfo(float).eps))
+    return q_matrix
+
 
 def kappa_metric(predict_queue):
     """
