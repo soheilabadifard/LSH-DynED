@@ -71,6 +71,7 @@ class Ensemble(object):
             # print(f"number of drifts: {self.drift_detected_count}")
 
         if self.aux_cnt == 1000 and len(self.model['reserve']) != 0 or self.drift:
+            self.update_lamda()
             self._update_ensemble()
             self.drift = False
 
@@ -180,7 +181,7 @@ class Ensemble(object):
 
         # check pool size
         if len(self.model['reserve']) > self.max_pool_size:
-            self.model['reserve'] = sorted(self.model['reserve'], key=lambda x: x.get_kappa())
+            self.model['reserve'] = sorted(self.model['reserve'], key=lambda x: x.get_kappa(), reverse=True)
             self.model['reserve'] = self.model['reserve'][:self.max_pool_size]
 
     def set_values_for_lamda_update(self, str_acc):
