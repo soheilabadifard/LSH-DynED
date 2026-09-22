@@ -158,9 +158,7 @@ The paper reports two effectiveness metrics per method and dataset. Both are com
 <details>
 <summary><b>Experimental Evaluation</b></summary>
 
-We conducted a thorough experimental evaluation on 33 imbalanced datasets, covering real-world datasets and semi-synthetic data streams. The results show that LSH-DynED demonstrates superior performance, especially on datasets with dynamic imbalance ratios.
-
-For a detailed analysis of our results, including performance on specific datasets and comparisons with 15 other methods, please refer to the full paper.
+The experimental evaluation on 33 datasets against 15 baselines, including the ablation, generalization and resampling studies, is reported in the paper.
 
 </details>
 
