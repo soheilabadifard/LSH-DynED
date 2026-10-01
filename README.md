@@ -10,13 +10,13 @@ This repository contains the implementation of the LSH-DynED model, a novel, rob
 
 ## Overview
 
-The classification of imbalanced data streams, where class distributions are unequal and change over time, is a significant challenge in machine learning, especially in multi-class scenarios. LSH-DynED addresses this challenge by integrating Locality Sensitive Hashing with Random Hyperplane Projections (LSH-RHP) into the Dynamic Ensemble Diversification (DynED) framework. This marks the first application of LSH-RHP for undersampling in the context of imbalanced non-stationary data streams.
+The classification of imbalanced data streams, where class distributions are unequal and change over time, is a significant challenge in machine learning, especially in multi-class scenarios. LSH-DynED addresses this challenge by integrating Locality-Sensitive Hashing with Random Hyperplane Projections (LSH-RHP) into the Dynamic Ensemble Diversification (DynED) framework. This marks the first application of LSH-RHP for undersampling in the context of imbalanced non-stationary data streams.
 
 LSH-DynED undersamples the majority classes using LSH-RHP to create balanced training batches, which in turn improves the minority-class performance of the ensemble. Our experiments on 33 real-world and semi-synthetic datasets against 15 state-of-the-art methods show improvements in Kappa and mG-Mean, with the best average rank on both metrics.
 
 ### Key Features:
 
-* **Novel Undersampling Technique:** First application of Locality Sensitive Hashing with Random Hyperplane Projections (LSH-RHP) for undersampling in multi-class imbalanced non-stationary data streams.
+* **Novel Undersampling Technique:** First application of Locality-Sensitive Hashing with Random Hyperplane Projections (LSH-RHP) for undersampling in multi-class imbalanced non-stationary data streams.
 * **Dynamic Ensemble Framework:** Extends and modifies the DynED framework to handle dynamic imbalance ratios in multi-class imbalanced data stream tasks.
 * **State-of-the-Art Performance:** Achieves the best average rank in both Kappa and mG-Mean effectiveness measures on a wide range of datasets.
 * **Robust and Resilient:** Effectively handles concept drift and dynamic changes in class distributions.
