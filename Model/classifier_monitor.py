@@ -356,8 +356,7 @@ class SlidingWindowForMetrics:
         #self.prediction_prob_window = []
         self.true_window = []
         self.window_size = 500
-        self.result_df = pd.DataFrame(columns=['avg_geo', 'recall', 'precision', 'f1', 'kappa'],
-                                      dtype=float)
+        self._rows = []  # one dict per instance; the DataFrame is built on access (a per-instance concat is quadratic)
         self.class_info = class_list
         self.matrix = None
         # self.est = Estimator(self.window_size, len(self.class_info))
@@ -395,7 +394,11 @@ class SlidingWindowForMetrics:
         data = {'avg_geo': gm, 'recall': recall, 'precision': precision,
                 'f1': f1, 'kappa': kappa}
 
-        self.result_df = pd.concat([self.result_df, pd.DataFrame([data])], ignore_index=True)
+        self._rows.append(data)
+
+    @property
+    def result_df(self):
+        return pd.DataFrame(self._rows, columns=['avg_geo', 'recall', 'precision', 'f1', 'kappa'], dtype=float)
 
     def get_window(self):
         return self.prediction_window, self.true_window
