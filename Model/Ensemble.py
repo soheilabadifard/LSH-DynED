@@ -59,8 +59,6 @@ class Ensemble(object):
         self._update_new_cdd(dy, pred)
         self.aux_cnt += 1
         self.learn_one(dx, dy)
-        if self.aux_cnt == 1000:
-            self.aux_cnt = 0
         self.window.add_to_window(dx, dy)
         self.predicted_samples += 1
         return pred
@@ -70,10 +68,12 @@ class Ensemble(object):
             self._add_classifier()
             # print(f"number of drifts: {self.drift_detected_count}")
 
-        if self.aux_cnt == 1000 and len(self.model['reserve']) != 0 or self.drift:
+        # theta = 1000; the count restarts after every update, periodic or drift-triggered (Algorithm 1)
+        if self.aux_cnt >= 1000 and len(self.model['reserve']) != 0 or self.drift:
             self.update_lamda()
             self._update_ensemble()
             self.drift = False
+            self.aux_cnt = 0
 
         for i in range(len(self.model['active'])):
             self.model['active'][i].learn_one(dx, dy)
