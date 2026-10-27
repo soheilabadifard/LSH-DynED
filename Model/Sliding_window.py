@@ -10,7 +10,7 @@ np.random.seed(101)
 
 class SlidingWindowLSH:
     def __init__(self, window_size, num_of_class, class_list, num_features, vector_size, size_to_train, size_to_test,
-                 sampling_mode='faiss_lsh_majority'):
+                 sampling_mode='faiss_lsh_majority', lsh_seed=5):
         self.window_size = window_size  # number of samples in each class
         self.num_of_class = num_of_class  # number of classes
         self.class_list = class_list  # list of classes
@@ -24,6 +24,7 @@ class SlidingWindowLSH:
         self.size_to_train = size_to_train
         self.size_to_test = size_to_test
         self.sampling_mode = sampling_mode
+        self.lsh_seed = lsh_seed  # seed of the Faiss hyperplane rotation; 5 is the Faiss IndexLSH default
         # each class overall
 
     def add_to_window(self, dx, dy):
@@ -146,6 +147,9 @@ class SlidingWindowLSH:
 
         lsh_each_class = {i: faiss.IndexLSH(self.num_features, self.vector_size) for i in
                           classes_with_high_ratio}
+        if self.lsh_seed != 5:
+            for index in lsh_each_class.values():
+                index.rrot.init(self.lsh_seed)
         table = {i: {} for i in classes_with_high_ratio}
         for key in classes_with_high_ratio:
             # if len(self.window[key]) > 0:

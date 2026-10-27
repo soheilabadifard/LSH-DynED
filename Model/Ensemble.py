@@ -15,7 +15,7 @@ np.random.seed(101)
 class Ensemble(object):
     def __init__(self, num_components: int, num_features: int, class_list: list, max_pool_size: int, wind_size: int,
                  ftr: list, size_to_train: int, size_to_test: int, vector: int,
-                 sampling_mode: str = 'faiss_lsh_majority'):
+                 sampling_mode: str = 'faiss_lsh_majority', lsh_seed: int = 5):
         self.vector = vector
         self.lamda = 0.6
         self.stream_acc = []
@@ -39,7 +39,8 @@ class Ensemble(object):
         self.tmp_drift_detected_count = 0
 
         self.window = sw.SlidingWindowLSH(wind_size, self.num_cls, class_list, num_features - 1, vector,
-                                          size_to_train, size_to_test, sampling_mode=sampling_mode)
+                                          size_to_train, size_to_test, sampling_mode=sampling_mode,
+                                          lsh_seed=lsh_seed)
 
         self.overall_accuracy = 0
         self.predicted_samples = 0
