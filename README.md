@@ -40,9 +40,9 @@ LSH-DynED operates in three main stages:
 <details>
 <summary><b>Implementation Details</b></summary>
 
-The proposed method is implemented in **Python 3.11.7** and utilizes the following libraries:
-* **River 0.21.1**
-* **Faiss 1.7.4**
+The proposed method is implemented in **Python 3.10.20** and utilizes the following libraries:
+* **River 0.21.2**
+* **Faiss 1.10.0**
 
 The base classifier used is a **Hoeffding Tree**.
 
