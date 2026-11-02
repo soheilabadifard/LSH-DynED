@@ -11,25 +11,26 @@
 # targets: river.drift.adwin.ADWIN, predict_proba_one, .drift_detected) needs
 # Python >=3.9, and faiss-cpu has its most reliable conda-forge builds on <=3.11.
 # numpy is held <2 for faiss / disarray / legacy-idiom compatibility.
+# Versions below are those of the reported runs.
 name: dyned-imb
 channels:
   - conda-forge
 dependencies:
-  - python=3.10
-  - numpy<2
-  - faiss-cpu
-  - scikit-learn
-  - pandas
-  - scipy
-  - matplotlib
-  - seaborn
-  - tqdm
-  - joblib
-  - openpyxl
-  - multipledispatch
-  - sortedcontainers
+  - python=3.10.20
+  - numpy=1.26.4
+  - faiss-cpu=1.10.0
+  - pandas=2.3.3
+  - scipy=1.15.2
+  - matplotlib=3.10.9
+  - seaborn=0.13.2
+  - tqdm=4.68.2
+  - joblib=1.5.3
+  - openpyxl=3.1.5
+  - multipledispatch=0.6.0
+  - sortedcontainers=2.4.0
   - pip
   - pip:
+      - scikit-learn==1.6.0    # installed from PyPI in the run environment
       - river==0.21.2          # pinned: code targets the 0.21.x API
       - imbalanced-learn==0.14.2
       - disarray==0.2.0        # df.da.* confusion-matrix accessor (PyPI only)
