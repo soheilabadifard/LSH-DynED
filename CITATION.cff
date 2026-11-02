@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Abadifard"
+  given-names: "Soheil"
+- family-names: "Can"
+  given-names: "Fazli"
+title: "LSH-DynED: A Dynamic Ensemble Framework with LSH-Based Undersampling for Evolving Multi-Class Imbalanced Classification"
+version: 1.0.0
+doi: 10.48550/ARXIV.2506.20041
+date-released: 2025-06-01
+url: "https://github.com/soheilabadifard/LSH-DynED"
+preferred-citation:
+  type: article
+  authors:
+  - family-names: "Abadifard"
+    given-names: "Soheil"
+  - family-names: "Can"
+    given-names: "Fazli"
+  title: "LSH-DynED: A Dynamic Ensemble Framework with LSH-Based Undersampling for Evolving Multi-Class Imbalanced Classification"
+  year: 2025
+  journal: "arXiv preprint arXiv:2506.20041"
+  doi: 10.48550/ARXIV.2506.20041
